@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Please Wait</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="center">
+
+<h2 id="waiting-text">Please wait... <br> You will fill out a questionnaire now.</h2>
+
+<script>
+    setTimeout(() => {
+        const continueButton = document.createElement('button');
+        continueButton.innerText = "Continue";
+        continueButton.setAttribute("onclick", "goToNextStep('phase2.html')");
+        document.getElementById("waiting-text").remove();
+        document.body.appendChild(continueButton);
+    }, 30000); //30 Sekunden warten
+</script>
+
+<script src="localstorage.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

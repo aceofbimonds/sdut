@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Choose A Group</title>
+  <link rel="stylesheet" href="game/style.css">
+</head>
+<body>
+
+<div id="content">
+  <h1>Choose your group</h1>
+  <input type="radio" name="group" id="group1" value="1" onclick="groupSelected(1)">
+  <label for="group1" >Group 1</label>
+  <input type="radio" name="group" id="group2" value="2" onclick="groupSelected(2)">
+  <label for="group2" >Group 2</label>
+  <!--
+  <button onclick="groupSelected(1)">Group 1</button>
+  <button onclick="groupSelected(2)">Group 2</button>
+  -->
+</div>
+<div id="next">
+  <button id="next-button" onclick="goToNextStep('game/prime.html')" disabled>Next</button>
+</div>
+
+<script src="game/localstorage.js"></script>
+<script src="game/game.js"></script>
+
+<script>
+    clearData();
+    function groupSelected (group) {
+        if(group === 1) {
+            writeLog('Reward Group');
+        } else {
+            writeLog('Control Group');
+        }
+        setGroup(group);
+
+        enableButton("next-button");
+    }
+</script>
+
+</body>
+</html>

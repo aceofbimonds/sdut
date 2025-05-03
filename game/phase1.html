@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scenarios</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<script>const scenarioNr = parseInt(location.search.replace('?scenario=', ''))</script>
+<script>
+    function hideScreen( screenId ) {
+    document.getElementById( screenId ).classList.add( 'hidden' );
+    }
+</script>
+
+<div id="accept-screen">
+  <div class="center">
+    <h2 id="heading">
+      Scenario
+      <script>
+          const span = document.createElement('span');
+          span.innerText = scenarioNr.toString();
+          document.getElementById('heading').appendChild(span);
+      </script>
+    </h2>
+    <button id="scenario-start-button" onclick="hideScreen('accept-screen')">Start</button>
+  </div>
+</div>
+
+<div id="video-container">
+  <video id="video" controls onended="showButton('choice-buttons')"></video>
+</div>
+
+<div id="choice-buttons" class="hidden">
+  <button id="help-button" onclick="helpClicked()"></button>
+  <button id="ignore-button" onclick="ignoreClicked()">Continue walking</button>
+</div>
+
+<div id="sticker-container">
+  <img id="sticker1" src="images/sticker1.png" style="display:none; width:100px; margin:10px">
+  <img id="sticker2" src="images/sticker2.png" style="display:none; width:100px; margin:10px">
+  <img id="sticker3" src="images/sticker3.png" style="display:none; width:100px; margin:10px">
+</div>
+
+<script src="localstorage.js"></script>
+
+<script>
+
+    function updateStickerVisibility() {
+        if (getCollectedStickers().includes(1)) {
+            sticker1.style.display = "block";
+        } else {
+            sticker1.style.display = "none";
+        }
+        if (getCollectedStickers().includes(2)) {
+            sticker2.style.display = "block";
+        } else {
+            sticker2.style.display = "none";
+        }
+        if (getCollectedStickers().includes(3)) {
+            sticker3.style.display = "block";
+        } else {
+            sticker3.style.display = "none";
+        }
+    }
+
+    updateStickerVisibility();
+</script>
+
+
+<script src="game.js"></script>
+
+<script>
+    const stickerContainer = document.getElementById('sticker-container');
+    if (scenarioNr > videosPhase1.length) {
+        window.location.href = "transition.html";
+    }
+    console.log(scenarioNr);
+    console.log(videosPhase1[scenarioNr - 1]);
+    const scenario = videosPhase1[scenarioNr - 1];
+    document.getElementById('help-button').innerText = scenario.helpText;
+    document.getElementById('video').src = scenario.initial;
+    document.getElementById('scenario-start-button').addEventListener('click', () => {
+        document.getElementById('video').play();
+    })
+    const sticker1 = document.getElementById('sticker1')
+    const sticker2 = document.getElementById('sticker2')
+    const sticker3 = document.getElementById('sticker3')
+    let ignoreIsClicked = false;
+
+    function helpClicked() {
+        writeLog("help");
+        if (getGroup() === "1") {
+            addSticker(scenarioNr);
+
+            setTimeout(() => {
+                //console.log("scen");
+                updateStickerVisibility();
+            }, (scenario.triggerTime + 3) * 1000); //nach Start der Animation noch 3 Sekunden warten
+
+        }
+        playOutro(getGroup() === "1" ? scenario.helpSticker : scenario.helpNoSticker);
+    }
+
+    function ignoreClicked() {
+        writeLog("ignore");
+        ignoreIsClicked = true;
+        playOutro(scenario.ignore);
+    }
+
+    function playOutro(newVideo) {
+        console.log("playOutro");
+        document.getElementById('choice-buttons').classList.add('hidden');
+        const video = document.getElementById('video');
+        video.setAttribute('src', newVideo);
+        if (getGroup() === "1" && !ignoreIsClicked) {
+            // Add timeupdate event listener to check video progress
+            video.addEventListener('timeupdate', function () {
+
+                if (video.currentTime >= scenario.triggerTime && !video.triggered) {
+                    video.triggered = true; // Prevent multiple triggers
+                    animateSticker(scenarioNr);
+                }
+            });
+        }
+            //video.requestFullscreen();
+            video.play();
+            video.onended = () => {
+                window.location.href = "phase1.html?scenario=" + (scenarioNr + 1);
+            };
+    }
+
+
+</script>
+
+
+</body>
+</html>

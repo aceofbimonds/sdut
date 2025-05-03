@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mood</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="center">
+<h2>How are you feeling right now?</h2>
+<div class="slider" id="slider-container">
+  <span class="emoji">😢</span>
+  <input type="range" min="0" max="100" value="50" id="moodSlider" style="width: 300px" oninput="sliderChange()">
+  <span class="emoji">😊</span>
+  <script>
+      let mood
+
+      function sliderChange() {
+          mood = document.getElementById("moodSlider").value;
+          enableButton('start-button');
+      }
+  </script>
+</div>
+<div id="startGame">
+  <button id="start-button" onclick="goToNextStepAndLog('phase1.html?scenario=1', mood)" disabled>Start the game
+  </button>
+</div>
+
+<script src="localstorage.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

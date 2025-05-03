@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Done</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="center">
+<h2>You're done with the game! Thank you for playing! <br> Now some final questionnaires.</h2>
+
+<script src="localstorage.js"></script>
+<script src="game.js"></script>
+<script>
+    const blob = new Blob([getLog().join('\n')], {type: 'text/plain'});
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `interaktion_log_${new Date().toISOString()}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+</script>
+</body>
+</html>

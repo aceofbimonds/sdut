@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Phase 2</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="video-container">
+  <video id="video" src="videos/delivery.mp4" controls onended="showButton('choice-buttons')"></video>
+</div>
+
+<div id="choice-buttons" class="hidden">
+  <button id="wait-button" onclick="waitClicked()">Wait</button>
+  <button id="take-action-button" onclick="actionClicked()">Try to get the food out by yourself</button>
+</div>
+
+<script>
+    function waitClicked() {
+        writeLog("wait");
+        goToNextStep('moodSlider2.html');
+    }
+
+    function actionClicked() {
+        writeLog("try to get food out by yourself");
+        goToNextStep('moodSlider2.html');
+    }
+</script>
+
+<script src="game.js"></script>
+<script src="localstorage.js"></script>
+</body>
+</html>
