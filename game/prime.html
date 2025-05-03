@@ -7,12 +7,14 @@
 </head>
 <body>
 <div id="video-container">
-  <video id="video" src="videos/helping_prime.mp4" controls onended="enableButton('next-button')"></video>
+  <video id="video" src="videos/helping_prime.mp4" controls onended="enableButton('start-button')"></video>
   <script>document.getElementById("video")</script>
 </div>
-<div id="next">
-  <button id="next-button" onclick="goToNextStep('moodSlider1.html')" disabled>Next</button>
+<div id="startGame">
+  <button id="start-button" onclick="goToNextStep('phase1.html?scenario=1')" disabled>Start the game
+  </button>
 </div>
+
 
 <script src="localstorage.js"></script>
 <script src="game.js"></script>

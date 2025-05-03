@@ -16,13 +16,12 @@
 
       function sliderChange() {
           mood = document.getElementById("moodSlider").value;
-          enableButton('start-button');
+          enableButton('next-button');
       }
   </script>
 </div>
-<div id="startGame">
-  <button id="start-button" onclick="goToNextStepAndLog('phase1.html?scenario=1', mood)" disabled>Start the game
-  </button>
+<div id="next">
+  <button id="next-button" onclick="goToNextStepAndLog('prime.html', mood)" disabled>Next</button>
 </div>
 
 <script src="localstorage.js"></script>
