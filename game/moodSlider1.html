@@ -11,18 +11,19 @@
   <span class="emoji">😢</span>
   <input type="range" min="0" max="100" value="50" id="moodSlider" style="width: 300px" oninput="sliderChange()">
   <span class="emoji">😊</span>
-  <script>
-      let mood
 
-      function sliderChange() {
-          mood = document.getElementById("moodSlider").value;
-          enableButton('next-button');
-      }
-  </script>
 </div>
 <div id="next">
   <button id="next-button" onclick="goToNextStepAndLog('prime.html', mood)" disabled>Next</button>
 </div>
+<script>
+    let mood
+
+    function sliderChange() {
+        mood = document.getElementById("moodSlider").value;
+        enableButton('next-button');
+    }
+</script>
 
 <script src="localstorage.js"></script>
 <script src="game.js"></script>
