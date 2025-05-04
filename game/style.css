@@ -59,7 +59,7 @@ button {
 }
 
 #choice-buttons {
-    bottom: 20px;
+    bottom: 40px;
     position: absolute;
     width: 100%;
     display: flex;

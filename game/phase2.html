@@ -4,14 +4,32 @@
   <meta charset="UTF-8">
   <title>Phase 2</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    #no-work-notice {
+        position: absolute;
+        bottom: 140px;
+        right: 50%;
+        transform: translateX(50%);
+        font-size: 30px;
+        padding: 10px 20px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border-radius: 10px;
+    }
+  </style>
 </head>
 <body>
 <div id="video-container">
   <video id="video" src="videos/delivery.mp4" controls onended="showButton('choice-buttons')"></video>
 
+  <div id="no-work-notice" style="display:none;">
+    Looks like that didn't work.
+  </div>
+
   <div id="choice-buttons" class="hidden">
     <button id="wait-button" onclick="waitClicked()">Wait</button>
     <button id="take-action-button" onclick="actionClicked()">Try to get the food out by yourself</button>
+    <button id="force-button" onclick="forceClicked()" style="display:none;">Try again with more force</button>
   </div>
 </div>
 
@@ -23,6 +41,16 @@
 
     function actionClicked() {
         writeLog("try to get food out by yourself");
+        const noWorkNotice = document.getElementById("no-work-notice");
+        const takeActionButton = document.getElementById("take-action-button");
+        const forceButton = document.getElementById("force-button");
+        noWorkNotice.style.display = "block";
+        takeActionButton.style.display = "none";
+        forceButton.style.display = "block";
+    }
+
+    function forceClicked() {
+        writeLog("force robot open");
         goToNextStep('moodSlider2.html');
     }
 </script>
