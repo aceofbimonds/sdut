@@ -71,12 +71,9 @@
 <script src="game.js"></script>
 
 <script>
-    const stickerContainer = document.getElementById('sticker-container');
     if (scenarioNr >= videosPhase1.length) {
         window.location.href = "transition.html";
     }
-    console.log(scenarioNr);
-    console.log(videosPhase1[scenarioNr - 1]);
     const scenario = videosPhase1[scenarioNr - 1];
     document.getElementById('help-button').innerText = scenario.helpText;
     document.getElementById('video').src = scenario.initial;
