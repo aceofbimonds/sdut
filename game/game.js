@@ -15,7 +15,7 @@ const videosPhase1 = [
         helpSticker: "videos/helpSticker2.mp4",
         helpText: "Move the trash can out of the way",
         stickerImage: "images/sticker2.png",
-        triggerTime: 13,
+        triggerTime: 9,
     },
     {
         initial: "videos/intro3.mp4",
