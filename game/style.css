@@ -54,8 +54,12 @@ button {
     position: static;
 }
 
+#video-container {
+    position: relative;
+}
+
 #choice-buttons {
-    bottom: 33vh;
+    bottom: 20px;
     position: absolute;
     width: 100%;
     display: flex;
@@ -197,6 +201,3 @@ video {
 .mood-option:hover label {
     transform: scale(1.1);
 }
-
-
-
