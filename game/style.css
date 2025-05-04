@@ -117,7 +117,7 @@ video {
     display: none;
 }
 
-.slider {
+.emojis {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -164,4 +164,39 @@ video {
         opacity: 0;
     }
 }
+
+.mood-option {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mood-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.mood-option label {
+    font-size: 50pt;
+    cursor: pointer;
+    padding: 0 10px 10px;
+    border-bottom: 3px solid transparent;
+    transition: border-bottom-color 0.2s ease;
+    line-height: 1;
+}
+
+
+.mood-option input[type="radio"]:checked + label {
+    border-bottom-color: white;
+}
+
+.mood-option:hover label {
+    transform: scale(1.1);
+}
+
+
 

@@ -7,22 +7,44 @@
 </head>
 <body class="center">
 <h2>How are you feeling right now?</h2>
-<div class="slider" id="slider-container">
-  <span class="emoji">😢</span>
-  <input type="range" min="0" max="100" value="50" id="moodSlider" style="width: 300px" oninput="sliderChange()">
-  <span class="emoji">😊</span>
-  <script>
-      let mood
+<div class="emojis" id="emoji-container" onclick="enableButton('next-button');">
+  <div class="mood-option">
+    <input type="radio" id="mood1" name="mood" value="1">
+    <label for="mood1">😢</label>
+  </div>
 
-      function sliderChange() {
-          mood = document.getElementById("moodSlider").value;
-          enableButton('next-button');
-      }
-  </script>
+  <div class="mood-option">
+    <input type="radio" id="mood2" name="mood" value="2">
+    <label for="mood2">☹️</label>
+  </div>
+
+  <div class="mood-option">
+    <input type="radio" id="mood3" name="mood" value="3">
+    <label for="mood3">😐️</label>
+  </div>
+
+  <div class="mood-option">
+    <input type="radio" id="mood4" name="mood" value="4">
+    <label for="mood4">😊</label>
+  </div>
+
+  <div class="mood-option">
+    <input type="radio" id="mood5" name="mood" value="5">
+    <label for="mood5">😁</label>
+  </div>
+</div>
+
 </div>
 <div id="finish">
-  <button id="next-button" onclick="goToNextStepAndLog('done.html', mood)" disabled>Finish</button>
+  <button id="next-button" onclick="goToNextStepAndLog('done.html', getSelectedMood())" disabled>Finish</button>
 </div>
+
+<script>
+    function getSelectedMood() {
+        const selectedRadio = document.querySelector('input[name="mood"]:checked');
+        return selectedRadio ? selectedRadio.value : null;
+    }
+</script>
 
 <script src="localstorage.js"></script>
 <script src="game.js"></script>
